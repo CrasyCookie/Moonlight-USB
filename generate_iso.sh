@@ -1,0 +1,39 @@
+#!/bin/sh
+
+# Source the settings file
+. settings.sh
+
+# /etc/doas.d/doas.conf
+doas_config = `permit :abuild
+permit persist :abuild`
+
+case $script_stage in
+    1)
+        printf "[S] Installing dependencies\n"
+        apk add alpine-sdk alpine-conf grub grub-efi grub-bios syslinux \
+            xorriso squashfs-tools doas mtools dosfstools
+        printf "[S] Installed dependencies\n"
+        printf "[S] Now go add the user 'build' with the password 'build'\n"
+        printf "[S] and log into build and run the script as build\n"
+        
+        ;;
+    2)
+        printf "[S] Generating keys\n"
+        abuild-keygen -i -a
+        printf "[S] Cloning aports\n"
+        git clone --depth=1 https://gitlab.alpinelinux.org/alpine/aports.git $BUILD_DIRECTORY/aports/
+        printf "[S] Updating apk repositories\n"
+        doas apk update
+        mkdir -pv $BUILD_DIRECTORY/tmp && export TMPDIR=$BUILD_DIRECTORY/tmp
+        printf "[S] Created tempory directory at $TMPDIR"
+
+        ;;
+    *)
+        printf "[S] Something went wrong, script stage=$script_stage\n"
+        printf "[S] If this is the first time running the script this is normal\n"
+        printf "[S] Resetting $script_stage\n"
+        export script_stage=1
+        exit 1
+        ;;
+esac
+export script_stage += 1
