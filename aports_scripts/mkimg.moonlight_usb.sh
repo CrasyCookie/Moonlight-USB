@@ -5,14 +5,14 @@ profile_moonlight_usb() {
 		* Runs from RAM
 		* Includes AMD and Intel microcode"
 	profile_abbrev="moonlight_usb"
-	arch="x86 x86_64"
+	arch="x86 x86_64 armv7 armhf aarch64"
     hostname="moonlight-usb"
 	boot_addons="amd-ucode intel-ucode"
 	initrd_ucode="/boot/amd-ucode.img /boot/intel-ucode.img"
 	apks="$apks linux-firmware
 		bwm-ng networkmanager
 		ufw dosfstools efibootmgr
-		grub grub-bios grub-efi syslinux
+		grub grub-bios grub-efi
 
         moonlight-qt tailscale
     "
