@@ -1,11 +1,7 @@
-#!/bin/sh
+#!/usr/bin/sh
 
 # Source the settings file
 . settings.sh
-
-# /etc/doas.d/doas.conf
-doas_config = `permit :abuild
-permit persist :abuild`
 
 # [S] currently stands for [SCRIPT], to be changed.
 case $script_stage in
@@ -13,7 +9,9 @@ case $script_stage in
         printf "[S] Installing dependencies\n"
         $PRIVILEGE_PREFIX apk add alpine-sdk alpine-conf grub grub-efi grub-bios syslinux \
             xorriso squashfs-tools doas mtools dosfstools
-        printf "[S] Installed dependencies\n"
+        printf "[S] Making configs"
+        mkdir -p /etc/doas.d/
+        cat 'permit persist :abuild' >> /etc/doas.d/doas.conf
         printf "[S] Now go add the user 'build' with the password 'build'\n"
         printf "[S] and log into build and run the script as build\n"
         
