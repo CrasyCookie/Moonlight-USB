@@ -44,6 +44,9 @@ EOF
 mkdir -p "$tmp"/etc/apk
 makefile root:root 0644 "$tmp"/etc/apk/world <<EOF
 alpine-base
+ufw
+tailscale
+networkmanager
 EOF
 
 rc_add devfs sysinit
@@ -58,6 +61,10 @@ rc_add sysctl boot
 rc_add hostname boot
 rc_add bootmisc boot
 rc_add syslog boot
+
+rc_add ufw boot
+rc_add tailscale boot
+rc_add networkmanager boot
 
 rc_add mount-ro shutdown
 rc_add killprocs shutdown

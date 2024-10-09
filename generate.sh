@@ -26,6 +26,8 @@ case $script_stage in
         doas apk update
         mkdir -pv $BUILD_DIRECTORY/tmp && export TMPDIR=$BUILD_DIRECTORY/tmp
         printf "[S] Created tempory directory at $TMPDIR"
+        ln aports_scripts/* $BUILD_DIRECTORY/aports/scripts/
+        printf "[S] Linked scripts to aports/scripts directory"
 
         ;;
     *)
