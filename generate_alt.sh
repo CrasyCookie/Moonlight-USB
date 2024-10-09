@@ -12,7 +12,7 @@ mkdir -p /etc/doas.d/
 cat 'permit persist :abuild' >> /etc/doas.d/doas.conf
 adduser build -DG abuild
 printf "build:build" | chpasswd
-su -c <<EOF
+su build -c <<EOF
 printf "[S] Generating keys\n"
 abuild-keygen -i -a
 printf "[S] Cloning aports\n"
