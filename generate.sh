@@ -21,7 +21,6 @@ case $script_stage in
         abuild-keygen -i -a
         printf "[S] Cloning aports\n"
         git clone --depth=1 https://gitlab.alpinelinux.org/alpine/aports.git $BUILD_DIRECTORY/aports/
-        # If you need to add your own .mkimg and stuff, add it here
         printf "[S] Updating apk repositories\n"
         doas apk update
         mkdir -pv $BUILD_DIRECTORY/tmp && export TMPDIR=$BUILD_DIRECTORY/tmp
