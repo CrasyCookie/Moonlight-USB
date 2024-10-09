@@ -5,7 +5,7 @@
 These scripts create a lot of (potentially unsecure) byproducts which are not cleaned up, and are meant to run in a clean throwaway environment. Usually that is a virtual machine.
 
 ## How to use
-1. Setup a virtual machine with alpine linux
+1. Setup a virtual machine with alpine linux and git
 2. Clone this repository
 `git clone https://github.com/CrasyCookie/Moonlight-USB.git`
 3. Edit `settings.sh` to fit your purpose
