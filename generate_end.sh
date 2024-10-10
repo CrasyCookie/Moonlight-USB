@@ -4,12 +4,13 @@
 . settings.sh
 
 error() {
-    printf "[ERROR] %s" "$1\n"
+    # \e[?m are colour escape codes
+    printf "\e[31m[ERROR] %s\e[0m\n" "$1"
     exit 1
 }
 # Use [ACTION] for things that have to be done
 printf "[INFO] Generating keys\n"
-abuild-keygen -i -a || printf "[WARN] Failed to generate keys"
+abuild-keygen -i -a || printf "[WARN] Failed to generate keys\n"
 printf "[INFO] Cloning aports\n"
 git clone --depth=1 https://gitlab.alpinelinux.org/alpine/aports.git "$BUILD_DIRECTORY"/aports/ || error "failed to clone aports"
 printf "[INFO] Updating apk repositories\n"

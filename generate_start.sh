@@ -4,7 +4,8 @@
 . settings.sh
 
 error() {
-    printf "[ERROR] %s" "$1\n"
+    # \e[?m are colour escape codes
+    printf "\e[31m[ERROR] %s\e[0m\n" "$1"
     exit 1
 }
 # use [ACTION] for things that need to be done by the user
