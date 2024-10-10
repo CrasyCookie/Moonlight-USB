@@ -7,7 +7,7 @@
 printf "[S] Installing dependencies\n"
 $PRIVILEGE_PREFIX apk add alpine-sdk alpine-conf grub grub-efi grub-bios syslinux \
 xorriso squashfs-tools doas mtools dosfstools
-printf "[S] Making configs"
+printf "[S] Making configs\n"
 mkdir -p /etc/doas.d/
 cat 'permit persist :abuild' >> /etc/doas.d/doas.conf
 adduser build -DG abuild
