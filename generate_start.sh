@@ -3,12 +3,18 @@
 # Source the settings file
 . settings.sh
 
-# [S] currently stands for [SCRIPT], to be changed.
-printf "[S] Installing dependencies\n"
-$PRIVILEGE_PREFIX apk add alpine-sdk alpine-conf grub grub-efi grub-bios syslinux \
-xorriso squashfs-tools doas mtools dosfstools
-printf "[S] Making configs\n"
+error() {
+    printf "[ERROR] %s" "$1"
+    exit 1
+}
+# use [ACTION] for things that need to be done by the user
+printf "[INFO] Installing dependencies\n"
+apk add alpine-sdk alpine-conf grub grub-efi grub-bios syslinux \
+    xorriso squashfs-tools doas mtools dosfstools || error "failed to install dependencies"
+printf "[INFO] Adding user 'build'\n"
 adduser build -DG abuild
-printf "build:build" | chpasswd
-$PRIVLEGE_PREFIX mkdir -p /etc/doas.d/
-$PRIVLEGE_PREFIX cat 'permit persist :abuild' > /etc/doas.d/doas.conf
+printf "build:build" | chpasswd || error "failed to add user or change user password"
+printf "[INFO] Creating configs"
+mkdir -p /etc/doas.d/
+echo "permit persist :abuild" >> /etc/doas.d/doas.conf || error "Failed to create doas.conf"
+printf "[INFO] Done"
