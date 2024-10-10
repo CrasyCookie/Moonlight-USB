@@ -19,6 +19,6 @@ printf "[INFO] Updating apk repositories\n"
 apk update || error "failed to update package repositories"
 mkdir -pv "$BUILD_DIRECTORY"/tmp && export TMPDIR="$BUILD_DIRECTORY"/tmp
 printf "[INFO] Created tempory directory at %s\n" "$TMPDIR"
-"$PRIVELEGE_PREFIX" ln aports_scripts/* "$BUILD_DIRECTORY"/aports/scripts/ || error "Linking scripts failed"
+ln aports_scripts/* "$BUILD_DIRECTORY"/aports/scripts/ || error "Linking scripts failed"
 printf "[INFO] Linked scripts to aports/scripts directory\n"
 printf "[INFO] Done\n"
