@@ -19,7 +19,7 @@ abuild-keygen -i -a || printf "[WARN] Failed to generate keys\n"
 printf "[INFO] Updating apk repositories\n"
 "$PRIVILEGE_PREFIX" apk update || error "failed to update package repositories"
 mkdir -pv "$BUILD_DIRECTORY"/tmp && export TMPDIR="$BUILD_DIRECTORY"/tmp
-printf "[INFO] Created tempory directory at %s\n" "$TMPDIR"
+doas printf "[INFO] Created tempory directory at %s\n" "$TMPDIR" || error "Failed to create temporary directory"
 #ln aports_scripts/* "$BUILD_DIRECTORY"/aports/scripts/ || error "Linking scripts failed"
 #printf "[INFO] Linked scripts to aports/scripts directory\n"
 printf "[INFO] Done\n"
