@@ -34,4 +34,3 @@ $PRIVILEGE_PREFIX "$BUILD_DIRECTORY/aports/scripts/mkimage.sh" --tag "$RELEASE" 
     --repository "https://$APK_REPOSITORY_MIRROR/alpine/$RELEASE/main" \
     --repository "https://$APK_REPOSITORY_MIRROR/alpine/$RELEASE/community" \
     --outdir "$BUILD_DIRECTORY/iso/"
-
