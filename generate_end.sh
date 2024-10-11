@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 
-# Source the settings file
-. settings.sh
+# Source the settings file if not being sourced (debug stuff)
+[-n "$1"] || . settings.sh; . funcs.sh
 
 error() {
     # \e[?m are colour escape codes

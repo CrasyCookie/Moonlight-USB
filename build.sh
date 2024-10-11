@@ -1,5 +1,5 @@
 #!/usr/bin/sh
-. settings.sh
+[-a "$1"] || . settings.sh
 
 $PRIVILEGE_PREFIX "$BUILD_DIRECTORY/aports/scripts/mkimage.sh" --tag "$RELEASE" \
     --arch "$BUILD_ARCHITECTURE" \
