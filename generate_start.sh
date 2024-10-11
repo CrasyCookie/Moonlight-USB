@@ -18,4 +18,6 @@ printf "build:build" | chpasswd || error "failed to add user or change user pass
 printf "[INFO] Creating configs\n"
 mkdir -p /etc/doas.d/
 echo "permit persist :abuild" >> /etc/doas.d/doas.conf || error "Failed to create doas.conf"
+printf "[INFO] Changing ownership of git directory to build user"
+chown build:abuild "$BUILD_DIRECTORY"
 printf "[INFO] Done\n"
