@@ -1,5 +1,5 @@
 #!/usr/bin/sh
-set -e
+set -exv
 . settings.sh
 
 # Debugging output to ensure variables are set correctly
@@ -18,15 +18,16 @@ if [ -z "$BUILD_DIRECTORY" ] || [ -z "$RELEASE" ] || [ -z "$BUILD_ARCHITECTURE" 
 fi
 
 # Ensure the build directory exists
-if [ ! -d "$BUILD_DIRECTORY" ]; then
-    echo "Error: BUILD_DIRECTORY '$BUILD_DIRECTORY' does not exist."
-    exit 1
-fi
+#if [ ! -d "$BUILD_DIRECTORY" ]; then
+#    echo "Error: BUILD_DIRECTORY '$BUILD_DIRECTORY' does not exist."
+#    exit 1
+#fi
 
 # Navigate to the build directory
-cd "$BUILD_DIRECTORY"
+#cd "$BUILD_DIRECTORY"
 
 # Run mkimage.sh with all validated parameters
+#"$BUILD_DIRECTORY/aports/scripts/mkimage.sh"
 "$BUILD_DIRECTORY/aports/scripts/mkimage.sh" --tag "$RELEASE" \
     --arch "$BUILD_ARCHITECTURE" \
     --profile "$PROFILENAME" \
