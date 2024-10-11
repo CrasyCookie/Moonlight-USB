@@ -17,7 +17,7 @@ abuild-keygen -i -a || printf "[WARN] Failed to generate keys\n"
 #    git clone --depth=1 "https://gitlab.alpinelinux.org/alpine/aports.git" "$BUILD_DIRECTORY"/aports/ || error "failed to clone aports"
 #fi
 printf "[INFO] Updating apk repositories\n"
-apk update || error "failed to update package repositories"
+"$PRIVILEGE_PREFIX" apk update || error "failed to update package repositories"
 mkdir -pv "$BUILD_DIRECTORY"/tmp && export TMPDIR="$BUILD_DIRECTORY"/tmp
 printf "[INFO] Created tempory directory at %s\n" "$TMPDIR"
 #ln aports_scripts/* "$BUILD_DIRECTORY"/aports/scripts/ || error "Linking scripts failed"
